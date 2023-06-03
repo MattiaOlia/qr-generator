@@ -64,34 +64,29 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          backgroundColor: theme.palette.primary.main,
-          border: 1,
           m: 0,
           textAlign: "center",
-
           color: theme.palette.primary.contrastText,
         }}
       >
-        <h1>QR CODE GENERATOR</h1>
+        <h1>QR-CODE GENERATOR</h1>
         <div
           style={{
             height: "auto",
             margin: "0 auto",
-            height: "100vh",
             maxWidth: 500,
             width: "100%",
           }}
         >
           <Box
             container
-            mt={3}
-            p={2}
+            p={1}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
           >
             <Box
-              p={5}
+              p={3}
               border={"solid"}
               sx={{
                 backgroundColor: "#fff",
@@ -100,7 +95,7 @@ function App() {
               }}
             >
               <QRCode
-                size={200}
+                size={170}
                 value={`${textValue}`}
                 title={`${textValue}`}
                 bgColor={`${bgColor}`}
@@ -198,7 +193,7 @@ function App() {
               onClick={handleClick}
             >
               {" "}
-              generate a QR code
+              generate your QR-code
             </Button>
           </Box>
         </div>
