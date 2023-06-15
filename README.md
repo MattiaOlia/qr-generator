@@ -15,9 +15,9 @@ QR Code Generation: QRCode.js
 
 Installation and Usage:
 
-1 Clone the repository: git clone https://github.com/MattiaOlia/TaskTracker.git
-2 Open the index.html file in your web browser to access the QR-CODE Gen.
-3 Feel free to explore and customize this QR-CODE Gen to fit your specific needs.
+- 1 Clone the repository: git clone https://github.com/MattiaOlia/TaskTracker.git
+- 2 Open the index.html file in your web browser to access the QR-CODE Gen.
+- 3 Feel free to explore and customize this QR-CODE Gen to fit your specific needs.
 
 Contributing:
 Contributions to QR-Gen are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the GitHub repository.
