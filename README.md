@@ -4,7 +4,7 @@ QR-CODE Gen is a web-based QR code generator that allows users to create QR code
 
 Key Features:
 
-- QR Code Generation: Generate QR codes with ease using the intuitive interface. Enter the desired information and quickly obtain the corresponding QR code.
+- QR Code Gen: Generate QR codes with ease using the intuitive interface. Enter the desired information and quickly obtain the corresponding QR code.
 Customizable Colors: Personalize the appearance of your QR code by customizing the colors. Choose foreground and background colors to match your branding or personal style.
 - Multiple Data Types: Generate QR codes for different types of data, including URLs, text, contact details (vCards), Wi-Fi credentials, and more. QR-Gen supports a wide range of data formats.
 - Download and Share: Download the generated QR code as an image file (e.g., PNG) for offline use. Share the QR code with others through social media, messaging apps, or email.
