@@ -1,6 +1,6 @@
 # QR-CODE GENERATOR 
 
-QR-CODE GEN is a web-based QR code generator that allows users to create QR codes for various purposes. With QR-CODE, users can easily generate QR codes containing different types of information, such as URLs, text, contact details, and more. One unique feature of QR-Gen is the ability to customize the colors of the QR code to match your branding or personal preferences.
+QR-CODE Gen is a web-based QR code generator that allows users to create QR codes for various purposes. With QR-CODE Gen, users can easily generate QR codes containing different types of information, such as URLs, text, contact details, and more. One unique feature of QR-Gen is the ability to customize the colors of the QR code to match your branding or personal preferences.
 
 Key Features:
 
