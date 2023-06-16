@@ -11,9 +11,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material";
-
+import DownloadIcon from '@mui/icons-material/Download';
+import { toPng } from 'html-to-image';
+import { saveAs } from 'file-saver';
+import { useRef } from 'react';
+import AnimationComp from "./AnimationComp";
+import bgImage from "./bg.png"
 
 function App() {
+  const qrCodeRef = useRef(null);
   const [textValue, setTextValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [bgColor, setBgColor] = useState("white");
@@ -46,6 +52,17 @@ function App() {
     setIsVisible(false);
     console.log("clear");
   }
+
+  
+  const handleDownload = () => {
+    toPng(qrCodeRef.current)
+      .then((dataUrl) => {
+        saveAs(dataUrl, 'qrcode.png');
+      })
+      .catch((error) => {
+        console.error('Error generating QR code image:', error);
+      });
+  };
   const theme = createTheme({
     palette: {
       primary: {
@@ -55,18 +72,20 @@ function App() {
       secondary: {
         main: "#0277bd",
       },
+      
       backgroundWhite: {
-        main: "#F9F6EE",
+        main: "#fdfdfd",
       },
     },
   });
   return (
     <ThemeProvider theme={theme}>
+      <AnimationComp />
       <Box
         sx={{
           m: 0,
           textAlign: "center",
-          color: theme.palette.primary.contrastText,
+          color: "#0277bd",
         }}
       >
         <h1>QR-CODE GENERATOR</h1>
@@ -95,6 +114,7 @@ function App() {
               }}
             >
               <QRCode
+                ref={qrCodeRef} 
                 size={170}
                 value={`${textValue}`}
                 title={`${textValue}`}
@@ -126,6 +146,7 @@ function App() {
               spacing={0}
               justifyContent={"center"}
               sx={{ width: "96%" }}
+              gap={1}
             >
               <TextField
                 id="outlined-basic"
@@ -186,7 +207,9 @@ function App() {
                 <MenuItem value={"blue"}>Blue</MenuItem>
               </Select>
             </FormControl>
-            <Button
+            <Box display={"flex"} sx={{width:"100%%"}} gap={1}>
+            <Button 
+              sx={{width:"90%"}}
               color="secondary"
               size="large"
               variant="outlined"
@@ -195,9 +218,19 @@ function App() {
               {" "}
               generate your QR-code
             </Button>
+            <Button 
+                disabled={isVisible ? false : true}
+                color={"secondary"}
+                size="large"
+                variant="outlined"
+                onClick={handleDownload}>
+                <DownloadIcon />
+              </Button>
+              </Box>
           </Box>
         </div>
       </Box>
+      
     </ThemeProvider>
   );
 }
