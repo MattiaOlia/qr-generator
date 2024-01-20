@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
-import { saveInputValue } from "../redux/action";
+import { saveInputValue, updateShow } from "../redux/action";
 
 export default function Textfield({ inputName, isCancelClicked }) {
   const [localState, setLocalState] = useState("");
@@ -14,11 +14,11 @@ export default function Textfield({ inputName, isCancelClicked }) {
 
     // Dispatch dell'azione con il nome dell'input e il valore dell'input
     dispatch(saveInputValue(inputName, inputValue));
-    
+    dispatch(updateShow(false));
   };
 
   useEffect(() => {
-    // Azzerare localState se isCancelClicked è true
+    // Resetta il campo di input se isCancelClicked diventa true
     if (isCancelClicked) {
       setLocalState("");
     }

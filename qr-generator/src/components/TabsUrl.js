@@ -7,27 +7,30 @@ import Textfield from "./Textfield"
 import Qr from './Qr';
 import { useSelector, useDispatch } from 'react-redux';
 import { voidInputValue } from "../redux/action";
+import { updateShow } from '../redux/action';
 
 export default function TabsUrl() {
     const [isCancelClicked, setIsCancelClicked] = React.useState(false)
-    const [isShowClicked, setIsShowClicked] = React.useState(false)
-    const websitePath = useSelector((state) => state.input.inputs.input1)
     
+    const websitePath = useSelector((state) => state.input.inputs.input1)
+    const shown = useSelector((state)=> state.input.show)
     const fullUrl = websitePath &&  websitePath.startsWith('www.')
     ?`https://${websitePath}`
     : websitePath;
+
+    
     
     const usedispatch = useDispatch()
 
    const handleCancel = () =>{
-    
        usedispatch(voidInputValue("input1", "input2"))
+       usedispatch(updateShow(false))
        setIsCancelClicked(true)
-       setIsShowClicked(false)
     }
 
     const handleShow = () =>{
-        setIsShowClicked(true)
+        setIsCancelClicked(false);
+        usedispatch(updateShow(true))
     }
    
     return (
@@ -71,11 +74,11 @@ export default function TabsUrl() {
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
-            border={"solid"}
-           
+            border={"solid green"}
+            
           >
     
-            <Qr value={fullUrl} show={isShowClicked}/>
+            <Qr value={fullUrl} show={shown}/>
       </Box>
       <Button
           sx={{ minHeight: "100%", width: "50%" }}

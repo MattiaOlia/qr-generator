@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TabSms from "./TabSms";
 import TabsUrl from './TabsUrl';
 import { useDispatch } from 'react-redux';
-import { voidInputValue } from '../redux/action';
+import { updateShow, voidInputValue } from '../redux/action';
 
 function CustomTabPanel(props) {
 
@@ -48,6 +48,7 @@ export default function InputTabs() {
   const usedispatch = useDispatch ()
   const handleChange = (event, newValue) => {
     usedispatch(voidInputValue("input1","input2"))
+    usedispatch(updateShow(false))
     setValue(newValue);
   };
 

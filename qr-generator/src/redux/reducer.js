@@ -1,13 +1,15 @@
 import { SAVE_INPUT_VALUE } from './action';
 import {VOID_INPUT_VALUE} from './action'
+import { UPDATE_SHOW } from './action';
+
 const initialState = {
   inputs: {
     input1: '',
     input2: '',
     
   },
-  
-  
+  show:false
+
 };
 
 const inputReducer = (state = initialState, action) => {
@@ -29,7 +31,11 @@ const inputReducer = (state = initialState, action) => {
               [action.payload.inputName]: '',
             },
           };
-         
+         case UPDATE_SHOW:
+          return{
+            ...state,
+            show: action.payload.show
+          }
     default:
       return state;
   }
