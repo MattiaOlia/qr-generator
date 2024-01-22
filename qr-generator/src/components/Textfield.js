@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
-import { saveInputValue, updateShow } from "../redux/action";
+import { saveInputValue, updateShow, voidInputValue } from "../redux/action";
+import { Button} from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
 
-export default function Textfield({ inputName, isCancelClicked }) {
+export default function Textfield({ inputName}) {
+  const [isCancelClicked, setIsCancelClicked] = React.useState(false)
   const [localState, setLocalState] = useState("");
   const dispatch = useDispatch();
 
@@ -12,17 +15,28 @@ export default function Textfield({ inputName, isCancelClicked }) {
     const inputValue = e.target.value;
     setLocalState(inputValue);
 
-    // Dispatch dell'azione con il nome dell'input e il valore dell'input
+  
     dispatch(saveInputValue(inputName, inputValue));
     dispatch(updateShow(false));
   };
+    
+  const handleCancel = () => {
+    setIsCancelClicked(true);
+    dispatch(voidInputValue("input1", "input2"));
+    dispatch(updateShow(false));
+  
+  }
 
   useEffect(() => {
-    // Resetta il campo di input se isCancelClicked diventa true
+    
     if (isCancelClicked) {
       setLocalState("");
+      dispatch(voidInputValue(inputName));
+      dispatch(updateShow(false));
+      setIsCancelClicked(false)
+      console.log("isCanClicked")
     }
-  }, [isCancelClicked]);
+  }, [isCancelClicked, inputName]);
 
   return (
     <Box
@@ -34,7 +48,21 @@ export default function Textfield({ inputName, isCancelClicked }) {
       autoComplete="off"
     >
       <h5>Your Text</h5>
-      <TextField id={inputName} value={localState} onChange={handleChange} variant="standard" />
+      <TextField
+        id={inputName}
+        value={localState}
+        onChange={handleChange}
+        variant="standard"
+      />
+      <Button
+          sx={{ minHeight: "100%", width: "50%" }}
+          color={"secondary"}
+          size="large"
+          variant="outlined"
+          onClick={handleCancel}
+        >
+          <CancelIcon />
+        </Button>
     </Box>
   );
 }

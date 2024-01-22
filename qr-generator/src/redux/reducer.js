@@ -1,15 +1,11 @@
-import { SAVE_INPUT_VALUE } from './action';
-import {VOID_INPUT_VALUE} from './action'
-import { UPDATE_SHOW } from './action';
+import { SAVE_INPUT_VALUE, VOID_INPUT_VALUE, UPDATE_SHOW } from './action';
 
 const initialState = {
   inputs: {
     input1: '',
     input2: '',
-    
   },
-  show:false
-
+  show: false,
 };
 
 const inputReducer = (state = initialState, action) => {
@@ -22,20 +18,22 @@ const inputReducer = (state = initialState, action) => {
           ...state.inputs,
           [inputName]: inputValue,
         },
+        show: false, // Aggiunto questo per assicurarsi che lo show venga impostato su false quando si aggiorna l'input
       };
-      case VOID_INPUT_VALUE:
-          return {
-            ...state,
-            inputs: {
-              ...state.inputs,
-              [action.payload.inputName]: '',
-            },
-          };
-         case UPDATE_SHOW:
-          return{
-            ...state,
-            show: action.payload.show
-          }
+    case VOID_INPUT_VALUE:
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.payload.inputName]: '',
+        },
+        show: false, // Aggiunto questo per assicurarsi che lo show venga impostato su false quando si cancella l'input
+      };
+    case UPDATE_SHOW:
+      return {
+        ...state,
+        show: action.payload.show,
+      };
     default:
       return state;
   }

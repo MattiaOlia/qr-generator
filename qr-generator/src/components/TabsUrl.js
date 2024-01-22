@@ -2,7 +2,7 @@ import React from 'react'
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button} from "@mui/material";
-import CancelIcon from "@mui/icons-material/Cancel";
+
 import Textfield from "./Textfield"
 import Qr from './Qr';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ import { voidInputValue } from "../redux/action";
 import { updateShow } from '../redux/action';
 
 export default function TabsUrl() {
-    const [isCancelClicked, setIsCancelClicked] = React.useState(false)
+  const [isCancelClicked, setIsCancelClicked] = React.useState(false)
     
     const websitePath = useSelector((state) => state.input.inputs.input1)
     const shown = useSelector((state)=> state.input.show)
@@ -22,17 +22,14 @@ export default function TabsUrl() {
     
     const usedispatch = useDispatch()
 
-   const handleCancel = () =>{
-       usedispatch(voidInputValue("input1", "input2"))
-       usedispatch(updateShow(false))
-       setIsCancelClicked(true)
-    }
-
-    const handleShow = () =>{
-        setIsCancelClicked(false);
-        usedispatch(updateShow(true))
-    }
    
+    
+    const handleShow = () => {
+      setIsCancelClicked(false);
+      usedispatch(updateShow(true));
+     
+    };
+
     return (
         <Box
         container
@@ -58,16 +55,8 @@ export default function TabsUrl() {
         gap={1}
         border={"solid red"}
       >
-        <Textfield inputName={"input1"} isCancelClicked={isCancelClicked}/>
-        <Button
-          sx={{ minHeight: "100%", width: "50%" }}
-          color={"secondary"}
-          size="large"
-          variant="outlined"
-          onClick={handleCancel}
-        >
-          <CancelIcon />
-        </Button>
+        <Textfield inputName={"input1"} isCancelClicked={isCancelClicked} setIsCancelClicked={setIsCancelClicked}/>
+        
         <Box
             container
             p={1}

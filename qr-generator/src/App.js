@@ -12,8 +12,6 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
-import { toPng } from "html-to-image";
-import { saveAs } from "file-saver";
 import { useRef } from "react";
 import AnimationComp from "./AnimationComp";
 import theme from "./theme";
@@ -25,15 +23,7 @@ const App = () => {
   const dispatch = useDispatch();
  
   
-  const handleDownload = () => {
-    toPng(qrCodeRef.current)
-      .then((dataUrl) => {
-        saveAs(dataUrl, "qrcode.png");
-      })
-      .catch((error) => {
-        console.error("Error generating QR code image:", error);
-      });
-  };
+  
 
   return (
     <ThemeProvider theme={theme}>
