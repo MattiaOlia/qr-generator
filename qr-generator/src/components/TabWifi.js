@@ -7,15 +7,15 @@ import { voidInputValue } from "../redux/action";
 import { updateShow } from '../redux/action';
 import TextField from './Textfield'
 
-export default function TabSms() {
+export default function TabWifi() {
   const [isCancelClicked, setIsCancelClicked] = useState(false);
   const shown = useSelector((state)=> state.input.show);
   const inputValue1 = useSelector((state) => state.input.inputs.input1);
   const inputValue2 = useSelector((state) => state.input.inputs.input2);
-  const phoneNumber = inputValue1;
-  const smsText = inputValue2;
+  const ssid = inputValue1;
+  const password = inputValue2;
 
-  const smsUrl = `smsto:${encodeURIComponent(phoneNumber)}:${smsText}`;
+  const WifiUrl = `WIFI:T:WPA;S:${ssid};P:${password};;`;
 
   const usedispatch = useDispatch();
 
@@ -71,7 +71,9 @@ export default function TabSms() {
           justifyContent={"center"}
           border={"solid green"}
         >
-          <Qr value={smsUrl} show={shown} />
+  
+
+          <Qr value={WifiUrl} show={shown} />
         </Box>
         <Button
           sx={{ minHeight: "100%", width: "50%" }}

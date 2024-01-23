@@ -3,6 +3,7 @@ import QRCode from 'react-qr-code';
 import Box from '@mui/material/Box';
 import QrColor from './QrColor';
 import QrDownload from './QrDownload';
+import SocialShare from './SocialShare';
 
 export default function Qr(props) {
   const qrCodeRef = useRef(null);
@@ -15,7 +16,6 @@ export default function Qr(props) {
         border={'solid red'}
         sx={{
           backgroundColor: '#fff',
-          width: '50%',
           borderRadius: '20px',
         }}
       >
@@ -33,7 +33,11 @@ export default function Qr(props) {
           <QrColor setColor={setColor} />
         </Box>
         <Box>
-          <QrDownload qrCodeRef={qrCodeRef} /> {/* Passa la ref come prop */}
+          <QrDownload qrCodeRef={qrCodeRef} /> 
+        </Box>
+        <Box>
+          
+          <SocialShare url={`https://http://localhost:3000/qrcode?value=${encodeURIComponent(props.value)}`} />
         </Box>
       </Box>
     </div>

@@ -1,56 +1,38 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { saveInputValue } from "./redux/action"; // Sostituisci con il percorso corretto delle tue azioni
-
+import { ThemeProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  ThemeProvider,
-} from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download";
-import { useRef } from "react";
+import Typography from "@mui/material/Typography";
 import AnimationComp from "./AnimationComp";
 import theme from "./theme";
-import TabSms from "./components/TabSms";
 import InputTabs from "./components/InputTabs";
 
 const App = () => {
-  const qrCodeRef = useRef(null);
-  const dispatch = useDispatch();
- 
-  
-  
-
   return (
     <ThemeProvider theme={theme}>
-      <AnimationComp />
+     
       <Box
         sx={{
-          m: 0,
-          textAlign: "center",
-          color: "#0277bd",
+          m: "1em",
+          textAlign: "left",
+          color: theme.palette.secondary.main, // Usa il colore di secondo livello dal tema
         }}
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
+        border={"solid red"}
       >
-        <h1>QR-CODE GENERATOR</h1>
-        
-        <div
-          style={{
+       <Box my={2} display={"flex"} alignItems={"center"}><Typography variant="h1">QR</Typography><Typography variant="h2">GENERATOR</Typography></Box> 
+        <Box
+          sx={{
             height: "auto",
             margin: "0 auto",
             width: "100%",
-            border: "solid red",
-            display: "flex",
+            
             
           }}
-        >   
+        >
           <InputTabs />
-          
-         
-        </div>
+        </Box>
       </Box>
     </ThemeProvider>
   );

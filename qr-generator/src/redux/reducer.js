@@ -4,6 +4,7 @@ const initialState = {
   inputs: {
     input1: '',
     input2: '',
+    input3: ''
   },
   show: false,
 };

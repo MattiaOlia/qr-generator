@@ -31,29 +31,17 @@ export default function TabsUrl() {
     };
 
     return (
-        <Box
-        container
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, Width: "80%" },
-          padding: "2em",
-          display: "flex",
-          flexDirection: "column",
-          
-          borderRadius: "20px",
-        }}
-        noValidate
-        autoComplete="on"
-        m={1}
-      >
+        
+  
     <Box
         display={"flex"}
-        container
-        spacing={0}
+        
+        spacing={2}
         justifyContent={"center"}
-        sx={{ width: "96%" }}
-        gap={1}
-        border={"solid red"}
+        gap={5}
+        border={"solid blue"}
+        flexDirection={"column"}
+
       >
         <Textfield inputName={"input1"} isCancelClicked={isCancelClicked} setIsCancelClicked={setIsCancelClicked}/>
         
@@ -64,13 +52,11 @@ export default function TabsUrl() {
             alignItems={"center"}
             justifyContent={"center"}
             border={"solid green"}
+            flexDirection={"column"}
             
-          >
-    
-            <Qr value={fullUrl} show={shown}/>
-      </Box>
-      <Button
-          sx={{ minHeight: "100%", width: "50%" }}
+          > 
+          <Button
+          
           color={"secondary"}
           size="large"
           variant="outlined"
@@ -78,7 +64,11 @@ export default function TabsUrl() {
         >
           Create QR CODE
         </Button>
+    
+            <Qr value={fullUrl} show={shown}/>
       </Box>
+      
       </Box>
+      
     )
 }

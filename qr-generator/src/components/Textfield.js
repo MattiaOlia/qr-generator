@@ -6,8 +6,7 @@ import { saveInputValue, updateShow, voidInputValue } from "../redux/action";
 import { Button} from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export default function Textfield({ inputName}) {
-  const [isCancelClicked, setIsCancelClicked] = React.useState(false)
+export default function Textfield({ inputName }) {
   const [localState, setLocalState] = useState("");
   const dispatch = useDispatch();
 
@@ -15,35 +14,19 @@ export default function Textfield({ inputName}) {
     const inputValue = e.target.value;
     setLocalState(inputValue);
 
-  
     dispatch(saveInputValue(inputName, inputValue));
     dispatch(updateShow(false));
   };
-    
-  const handleCancel = () => {
-    setIsCancelClicked(true);
-    dispatch(voidInputValue("input1", "input2"));
-    dispatch(updateShow(false));
-  
-  }
 
-  useEffect(() => {
-    
-    if (isCancelClicked) {
-      setLocalState("");
-      dispatch(voidInputValue(inputName));
-      dispatch(updateShow(false));
-      setIsCancelClicked(false)
-      console.log("isCanClicked")
-    }
-  }, [isCancelClicked, inputName]);
+  const handleCancel = () => {
+    setLocalState("");
+    dispatch(voidInputValue(inputName));
+    dispatch(updateShow(false));
+  };
 
   return (
     <Box
       component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
       noValidate
       autoComplete="off"
     >
@@ -53,16 +36,17 @@ export default function Textfield({ inputName}) {
         value={localState}
         onChange={handleChange}
         variant="standard"
+        sx={{width:"80%"}}
       />
       <Button
-          sx={{ minHeight: "100%", width: "50%" }}
-          color={"secondary"}
-          size="large"
-          variant="outlined"
-          onClick={handleCancel}
-        >
-          <CancelIcon />
-        </Button>
+        
+        color={"secondary"}
+        size="large"
+        variant="outlined"
+        onClick={handleCancel}
+      >
+        <CancelIcon />
+      </Button>
     </Box>
   );
 }

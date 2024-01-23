@@ -8,6 +8,9 @@ import TabSms from "./TabSms";
 import TabsUrl from './TabsUrl';
 import { useDispatch } from 'react-redux';
 import { updateShow, voidInputValue } from '../redux/action';
+import TabEmail from "./TabEmail"
+import TabPhone from './TabPhone';
+import TabWifi from "./TabWifi"
 
 function CustomTabPanel(props) {
 
@@ -22,7 +25,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 1 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -53,45 +56,37 @@ export default function InputTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }} display={"flex"}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+    <Box sx={{ width: '100' }} display={"flex"}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', border:"solid green" }}>
+        <Tabs value={value} onChange={handleChange} aria-label="Inputs">
+          <Tab label="URL" {...a11yProps(0)} />
+          <Tab label="SMS" {...a11yProps(1)} />
+          <Tab label="EMAIL" {...a11yProps(2)} />
+          <Tab label="PHONE" {...a11yProps(3)} />
+          <Tab label="WI-FI" {...a11yProps(4)} />
         </Tabs>
-      </Box>
+      
       <CustomTabPanel value={value} index={0}>
-     
+          <Box  display={"flex"} flexDirection={"column"}>
             <TabsUrl />
-            
+          </Box> 
         
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      <Box
-            container
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, Width: "80%" },
-              padding: "2em",
-              display: "flex",
-              flexDirection: "column",
-              
-              borderRadius: "20px",
-            }}
-            noValidate
-            autoComplete="on"
-            m={1}
-          >
+      
             <TabSms />
-            
-          </Box>
+
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+          <TabEmail />
       </CustomTabPanel>
-     
-
+      <CustomTabPanel value={value} index={3}>
+          <TabPhone />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={4}>
+          <TabWifi />
+      </CustomTabPanel>
+      </Box>
     </Box>
   );
 }

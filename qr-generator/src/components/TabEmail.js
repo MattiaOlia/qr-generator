@@ -12,11 +12,13 @@ export default function TabSms() {
   const shown = useSelector((state)=> state.input.show);
   const inputValue1 = useSelector((state) => state.input.inputs.input1);
   const inputValue2 = useSelector((state) => state.input.inputs.input2);
-  const phoneNumber = inputValue1;
-  const smsText = inputValue2;
+  const inputValue3 = useSelector((state) => state.input.inputs.input3);
 
-  const smsUrl = `smsto:${encodeURIComponent(phoneNumber)}:${smsText}`;
+  const yourEmail = inputValue1;
+  const subject = inputValue2;
+  const body = inputValue3
 
+  const emailURL = `mailto:${encodeURIComponent(yourEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const usedispatch = useDispatch();
 
   const handleShow = () => {
@@ -41,13 +43,6 @@ export default function TabSms() {
     <Box
       container
       component="form"
-      sx={{
-        "& > :not(style)": { m: 1, Width: "80%" },
-        padding: "2em",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: "20px",
-      }}
       noValidate
       autoComplete="on"
       m={1}
@@ -57,12 +52,12 @@ export default function TabSms() {
         container
         spacing={0}
         justifyContent={"center"}
-        sx={{ width: "96%" }}
         gap={1}
         border={"solid red"}
       >
         <TextField inputName={"input1"} />
         <TextField inputName={"input2"} />
+        <TextField inputName={"input3"} />
         <Box
           container
           p={1}
@@ -71,7 +66,7 @@ export default function TabSms() {
           justifyContent={"center"}
           border={"solid green"}
         >
-          <Qr value={smsUrl} show={shown} />
+          <Qr value={emailURL} show={shown} />
         </Box>
         <Button
           sx={{ minHeight: "100%", width: "50%" }}
