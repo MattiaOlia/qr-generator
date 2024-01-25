@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
 export default function ColorPicker({ onColorChange }) {
-  const mainColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+  const mainColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', ];
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedColor, setSelectedColor] = useState('#ffffff');
 
@@ -27,26 +27,27 @@ export default function ColorPicker({ onColorChange }) {
   const open = Boolean(anchorEl);
 
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={0} >
       {mainColors.map((color, index) => (
         <Button
           key={index}
           onClick={() => handleColorChange({ hex: color })}
           sx={{
             width: 'fit-content',
+            m:"0",
             ':hover': {
               cursor: 'pointer',
               backgroundColor: 'transparent',
-              border: '2px solid black',
+              
             },
           }}
         >
           <Chip
             sx={{
               backgroundColor: color,
-              height: '30px',
-              width: '30px',
-              borderRadius: '50%',
+              height:"40px",
+              width: '40px',
+              borderRadius: "25%",
               cursor: 'pointer',
             }}
           />
@@ -59,11 +60,11 @@ export default function ColorPicker({ onColorChange }) {
           ':hover': {
             cursor: 'pointer',
             backgroundColor: 'transparent',
-            border: '2px solid black',
+           
           },
         }}
       >
-        +
+        MORE COLORS
       </Button>
       <Popper open={open} anchorEl={anchorEl} placement="bottom-start">
         <ClickAwayListener onClickAway={handleClose}>

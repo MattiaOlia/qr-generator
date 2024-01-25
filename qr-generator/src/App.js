@@ -5,32 +5,38 @@ import Typography from "@mui/material/Typography";
 import AnimationComp from "./AnimationComp";
 import theme from "./theme";
 import InputTabs from "./components/InputTabs";
+import "./App.css"
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
      
-      <Box
+      <Box  
+      className="app-container"
         sx={{
-          m: "1em",
+          margin:"0 auto",
+          maxWidth: { xs: 350, sm:1200 },
           textAlign: "left",
           color: theme.palette.secondary.main, // Usa il colore di secondo livello dal tema
         }}
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        border={"solid red"}
+        
+        p={0}
+        
       >
-       <Box my={2} display={"flex"} alignItems={"center"}><Typography variant="h1">QR</Typography><Typography variant="h2">GENERATOR</Typography></Box> 
+       <Box mt={{ xs: 1}} display={"flex"} alignItems={"center"}><Typography fontSize={{ xs: "2rem", lg: "4rem" }} fontWeight={{ xs: 400, lg: 600 }}>QR</Typography><Typography variant="h2">GENERATOR</Typography></Box> 
         <Box
           sx={{
             height: "auto",
-            margin: "0 auto",
+            padding: "0",
             width: "100%",
-            
+             
             
           }}
-        >
+        > 
+        
           <InputTabs />
         </Box>
       </Box>

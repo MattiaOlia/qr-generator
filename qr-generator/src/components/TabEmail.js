@@ -41,44 +41,68 @@ export default function TabSms() {
 
   return (
     <Box
-      container
-      component="form"
-      noValidate
-      autoComplete="on"
-      m={1}
+    display={'flex'}
+    justifyContent={{ xs: 'center', lg: 'space-evenly' }}
+    flexDirection={{ xs: 'column', lg: 'row' }}
+    sx={{
+      transform:  { xs: "" , lg: 'scale(0.8)' }, 
+      transformOrigin: 'top center',
+      maxWidth: { xs: 350, sm: '100%' },
+      margin: '0 auto',
+    }}
+    gap={2}
+    width={'100%'}
+  >
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: { xs: 'space-between', lg: 'flex-start' },
+        margin: { xs: '', lg: '3em auto' },
+      }}
+      width={'100%'}
+      mt={4}
+      pb={12}
     >
-      <Box
-        display={"flex"}
-        container
-        spacing={0}
-        justifyContent={"center"}
-        gap={1}
-        border={"solid red"}
-      >
-        <TextField inputName={"input1"} />
-        <TextField inputName={"input2"} />
-        <TextField inputName={"input3"} />
-        <Box
-          container
-          p={1}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          border={"solid green"}
-        >
-          <Qr value={emailURL} show={shown} />
+      <Box  width={"100%"} sx={{ transformOrigin: 'top center',transform:  { xs: "" , lg: 'scale(0.8)' }}}>
+        <TextField inputName={"input1"} row={1} addLine={true} textPlaceholder={"Insert your email"}  />
+        <TextField inputName={"input2"} row={1} addLine={true} textPlaceholder={"Insert your object"} />
+        <TextField inputName={"input3"} row={3} textPlaceholder={"Insert your text"} />
         </Box>
-        <Button
-          sx={{ minHeight: "100%", width: "50%" }}
-          color={"secondary"}
-          size="large"
-          variant="outlined"
-          onClick={handleShow}
+        <Box
+          p={1}
+          display={'flex'}
+          alignItems={'center'}
+          justifyContent={{ xs: 'center', md: 'flex-start' }}
+          flexDirection={{ xs: 'column', md: 'row' }}
+          mt={{ xs: 2, md: '-5em' }}
+          
         >
-          Create QR CODE
-        </Button>
+          <Button
+            color={'secondary'}
+            variant="outlined"
+            size="large"
+            onClick={handleShow}
+            sx={{
+              display: 'flex',
+              width: { xs: 300, sm: 400 },
+              border: 'solid 2px',
+              borderRadius: '20px',
+              m: { xs: '1em auto', md: '0 1em' },
+              p: '1.5em',
+              color: 'white',
+            }}
+          >
+            Create QR CODE
+          </Button>
+        </Box>
+        </Box>
+        <Box>
+        <Qr value={emailURL} show={shown} />
       </Box>
-    </Box>
+      </Box>
+       
   );
 }
  

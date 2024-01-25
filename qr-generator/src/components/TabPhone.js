@@ -48,78 +48,104 @@ export default function TabPhone() {
 
   return (
     <Box
-      container
-      component="form"
+    display={'flex'}
+    justifyContent={{ xs: 'center', lg: 'space-evenly' }}
+    flexDirection={{ xs: 'column', lg: 'row' }}
+    sx={{
+      transform:  { xs: "" , lg: 'scale(0.8)' }, 
+      transformOrigin: 'top center',
+      maxWidth: { xs: 350, sm: '100%' },
+      margin: '0 auto',
+    }}
+    gap={2}
+    width={'100%'}
+  >
+    <Box
       sx={{
-        "& > :not(style)": { m: 1, width: "80%" },
-        padding: "2em",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: "20px",
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: { xs: 'space-between', lg: 'flex-start' },
+        margin: { xs: '', lg: '3em auto' },
       }}
-      noValidate
-      autoComplete="on"
-      m={1}
+      width={'100%'}
+      mt={4}
+      pb={12}
+    > 
+    <Box mb={8} p={2} border={"solid grey"} borderRadius={"15px"} width={"80%"} display={"flex"} justifyContent={"space-around"}>
+    <TextField
+      id="phone-prefix"
+      select
+      label="Prefix"
+      value={selectedPrefix}
+      
+      onChange={handlePrefixChange}
+      sx={{
+        m: 1,
+        minWidth: 200,
+        borderRadius: 5, // Aggiungi il border radius
+        color: 'white',
+       
+        '& .MuiSelect-icon': {
+          color: 'white', // Cambia il colore della freccia
+        },
+        
+      }}
+     
     >
-      <Textfield inputName={"input1"} /> {/* Assuming you have an appropriate inputName */}
+      {phonePrefixes.map((prefix) => (
+        <MenuItem key={prefix} sx={{border:"solid grey 1px", color:"white", borderRadius:"0"}} value={prefix}>
+          {prefix}
+        </MenuItem>
+      ))}
+      <MenuItem sx={{border:"solid grey 1px", color:"white"}}  value="custom">Custom</MenuItem>
+    </TextField>
 
+    {selectedPrefix === 'custom' && (
+      <TextField
+        id="custom-prefix"
+        label="Custom Prefix"
+        value={customPrefix}
+        onChange={handleCustomPrefixChange}
+        sx={{ m: 1, minWidth: 200 }}
+      />
+    )}
+     </Box>
+      <Textfield inputName={"input1"}  isCancelClicked={isCancelClicked} setIsCancelClicked={setIsCancelClicked} row={1} addLine={false} textPlaceholder={"Insert your phone nuber"}/> {/* Assuming you have an appropriate inputName */}
       <Box
-        display={"flex"}
-        container
-        spacing={0}
-        justifyContent={"center"}
-        sx={{ width: "96%" }}
-        gap={1}
-        border={"solid red"}
-      >
-        <TextField
-          id="phone-prefix"
-          select
-          label="Prefix"
-          value={selectedPrefix}
-          onChange={handlePrefixChange}
-          sx={{ m: 1, minWidth: 120 }}
-        >
-          {phonePrefixes.map((prefix) => (
-            <MenuItem key={prefix} value={prefix}>
-              {prefix}
-            </MenuItem>
-          ))}
-          <MenuItem value="custom">Custom</MenuItem>
-        </TextField>
-
-        {selectedPrefix === 'custom' && (
-          <TextField
-            id="custom-prefix"
-            label="Custom Prefix"
-            value={customPrefix}
-            onChange={handleCustomPrefixChange}
-            sx={{ m: 1, minWidth: 120 }}
-          />
-        )}
-
-        <Box
-          container
           p={1}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          border={"solid green"}
+          display={'flex'}
+          alignItems={'center'}
+          justifyContent={{ xs: 'center', md: 'flex-start' }}
+          flexDirection={{ xs: 'column', md: 'row' }}
+          mt={{ xs: 2, md: '11.5em' }}
         >
+          <Button
+            color={'secondary'}
+            variant="outlined"
+            size="large"
+            onClick={handleShow}
+            sx={{
+              display: 'flex',
+              width: { xs: 300, sm: 400 },
+              border: 'solid 2px',
+              borderRadius: '20px',
+              m: { xs: '1em auto', md: '0 1em' },
+              p: '1.5em',
+              color: 'white',
+            }}
+          >
+            Create QR CODE
+          </Button>
+        </Box>
+      </Box>
+        <Box>
  
           <Qr value={completePhoneNumber} show={shown} />
         </Box>
 
-        <Button
-          sx={{ minHeight: "100%", width: "50%" }}
-          color={"secondary"}
-          size="large"
-          variant="outlined"
-          onClick={handleShow}
-        >
-          Create QR CODE
-        </Button>
-      </Box>
-    </Box>
+        </Box>
+      
+    
   );
 }

@@ -16,13 +16,13 @@ function AnimationComp () {
   }, []);
 
   const containerStyle = {
-    position: 'fixed',
-    top: -50,
-    right: -450,
-    width: '150%',
-    height: '150%',
+    position: 'absolute',
+    top: 300,
+    right: -0,
+    width: '100%',
+    height: '100%',
     zIndex: -1,
-    transform: "rotate(45deg)"
+    
   };
 
   return (
