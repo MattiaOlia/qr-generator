@@ -1,43 +1,71 @@
 import React from "react";
+import { Link as ScrollLink } from "react-scroll";
 import { ThemeProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import AnimationComp from "./AnimationComp";
 import theme from "./theme";
 import InputTabs from "./components/InputTabs";
-import "./App.css"
+import "./App.css";
+import Logo from "./components/Logo";
+import Info from "./components/Info";
+import Footer from "./components/Footer";
+import SpeedDialButton from "./components/SpeedDialButton";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-     
-      <Box  
-      className="app-container"
+      <Box
+        className="app-container"
         sx={{
-          margin:"0 auto",
-          maxWidth: { xs: 350, sm:1200 },
+          margin: "0 auto",
+          maxWidth: { xs: 350, sm: 500, md: 800, lg: 1200 },
           textAlign: "left",
-          color: theme.palette.secondary.main, // Usa il colore di secondo livello dal tema
+          color: theme.palette.secondary.main,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          p: 0,
         }}
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems={"center"}
-        
-        p={0}
-        
       >
-       <Box mt={{ xs: 1}} display={"flex"} alignItems={"center"}><Typography fontSize={{ xs: "2rem", lg: "4rem" }} fontWeight={{ xs: 400, lg: 600 }}>QR</Typography><Typography variant="h2">GENERATOR</Typography></Box> 
         <Box
+          width={"100%"}
+          maxWidth={900}
+          mt={{ xs: 1 }}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          sx={{ padding: "0.5em 0" }}
+        >
+          <Logo />
+          <SpeedDialButton />
+        </Box>
+
+        <Box
+         id="inputs-section"
           sx={{
-            height: "auto",
-            padding: "0",
-            width: "100%",
-             
             
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
           }}
-        > 
-        
+        >
           <InputTabs />
+          
+          <Box
+            id="info-section"
+            sx={{
+              transform: { lg: "translateY(-200px)" },
+            }}
+          >
+            <Info />
+          </Box>
+         
+          <Box id="footer-section"  sx={{
+              transform: { lg: "translateY(-100px)" },
+            }}
+          >
+            <Footer />
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>
@@ -45,3 +73,4 @@ const App = () => {
 };
 
 export default App;
+

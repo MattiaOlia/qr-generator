@@ -91,7 +91,7 @@ export default function InputTabs() {
           <Tab label="PHONE" {...a11yProps(3)} />
           <Tab label="WI-FI" {...a11yProps(4)} />
         </Tabs>
-        <Box display={"flex"} flexDirection={"column"} width={"100%"} m={2}>
+        <Box display={"flex"} flexDirection={"column"} width={"100%"} m={2} >
           <CustomTabPanel p={0} m={0} value={value} index={0}>
             <TabsUrl />
           </CustomTabPanel>

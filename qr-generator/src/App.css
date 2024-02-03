@@ -4,7 +4,11 @@ body {
   }
   
   .app-container {
-
     transform-origin: top center; /* Imposta l'origine della trasformazione nell'angolo in alto a sinistra */
     transform: scale(1); /* Imposta la scala desiderata (0.8 rappresenta l'80% della dimensione originale) */
+  }
+
+button.MuiButtonBase-root .MuiFab-root .MuiFab-circular .MuiFab-sizeLarge .MuiFab-primary .MuiFab-root .MuiFab-circular .MuiFab-sizeLarge .MuiFab-primary .MuiSpeedDial-fab .css-9ct7b4-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab{
+    background-color: rgb(189, 2, 2)
+
   }
